@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">LabAssignment3</string>
+    <string name="maintitle">Select exercise to demonstrate</string>
+    <string name="line_thickness">Line Thickness</string>
+    <string name="line_color">Line Color</string>
+    <string name="red">Red</string>
+    <string name="yellow">Yellow</string>
+    <string name="cyan">Cyan</string>
+    <string name="clear_canvas">Clear Canvas</string>
+    <string name="arrow_keys">Arrow Keys</string>
+    <string name="animation_earth_and_moon">Animation Earth and Moon</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+
+    <!--Array to show options-->
+    <string-array name="main_menu_Options">
+        <item>Exercise 1</item>
+        <item>Exercise 2</item>
+        <item>Exercise 3</item>
+        <item>Exit</item>
+    </string-array>
+
+    <!--Array to show options-->
+    <string-array name="menu_Stokes">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+</resources>

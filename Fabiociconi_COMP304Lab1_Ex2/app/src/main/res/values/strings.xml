@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Fabiociconi_COMP304Lab1_Ex2</string>
+    <string name="full_name">Fabio Alexandre Ciconi</string>
+    <string name="program_name">Software Engineering Technology</string>
+    <string name="semester">Third Semester</string>
+    <string name="course_Name">Mobile Application Development</string>
+    <string name="title_activity_display_massage">DisplayMassage</string>
+</resources>

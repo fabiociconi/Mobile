@@ -1,0 +1,2356 @@
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/Cuisines.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/Cuisines.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/Cuisines.java	(revision )
+@@ -0,0 +1,105 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.app.Activity;
++import android.view.View;
++import android.widget.RadioButton;
++import android.widget.RadioGroup;
++import android.widget.Toast;
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++public class Cuisines extends Activity {
++    /**
++     *
++     */
++    private RadioGroup  radioGroupCo;
++    private RadioButton italianRadio;
++    private RadioButton canadianRadio;
++    private RadioButton frenchRadio;
++    private RadioButton brazilianRadio;
++    private Intent intentValue;
++
++    /**
++     *
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setTitle("Types of Cuisines");
++        setContentView(R.layout.activity_cuisines);
++    }
++
++    /**
++     *
++     * @param view
++     */
++    public void onClick(View view){
++
++        //RadioGroupRadios
++        radioGroupCo    = findViewById(R.id.radioGroupRest);
++
++        //radioButtons
++        italianRadio    = findViewById(R.id.radioButtonItalian);
++        canadianRadio   = findViewById(R.id.radioButtonCanadian);
++        frenchRadio     = findViewById(R.id.radioButtonFrench);
++        brazilianRadio  = findViewById(R.id.radioButtonBrazilian);
++
++
++        if(italianRadio.isChecked())
++        {
++            Send("Italian");
++        }
++        if(canadianRadio.isChecked())
++        {
++            Send("Canadian");
++        }
++        if(frenchRadio.isChecked())
++        {
++            Send("French");
++        }
++        if(brazilianRadio.isChecked())
++        {
++            Send("Brazilian");
++        }
++
++    }
++
++    /**
++     *
++     * @param foodType
++     */
++    private void Send(String foodType)
++    {
++        Save(foodType);
++        intentValue = new Intent(getApplicationContext(),Restaurants.class);
++        intentValue.putExtra("cuisine",foodType);
++        this.startActivity(intentValue);
++
++    }
++    /**
++     * @param c
++     */
++    private void Save(String c) {
++
++        Singleton save = Singleton.getInstance();
++        //Test
++        System.out.println("Instance ID 1 :" + save.hashCode());
++        //Test
++        save.addCusines(c);
++    }
++
++    /**
++     *
++     * @param msg
++     */
++    private void DisplayToast(String msg)
++    {
++        Toast.makeText(getBaseContext(), msg,
++                Toast.LENGTH_SHORT).show();
++    }
++
++}
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision )
++++ settings.gradle	(revision )
+@@ -0,0 +1,1 @@
++include ':app'
+Index: gradlew.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew.bat	(revision )
++++ gradlew.bat	(revision )
+@@ -0,0 +1,90 @@
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS=
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto init
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto init
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:init
++@rem Get command-line arguments, handling Windowz variants
++
++if not "%OS%" == "Windows_NT" goto win9xME_args
++if "%@eval[2+2]" == "4" goto 4NT_args
++
++:win9xME_args
++@rem Slurp the command line arguments.
++set CMD_LINE_ARGS=
++set _SKIP=2
++
++:win9xME_args_slurp
++if "x%~1" == "x" goto execute
++
++set CMD_LINE_ARGS=%*
++goto execute
++
++:4NT_args
++@rem Get arguments from the 4NT Shell from JP Software
++set CMD_LINE_ARGS=%$
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,8 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++    </style>
++
++</resources>
+Index: app/src/main/res/layout/activity_food.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_food.xml	(revision )
++++ app/src/main/res/layout/activity_food.xml	(revision )
+@@ -0,0 +1,143 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/foodList"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    android:background="@drawable/back"
++    tools:context="com.ciconi.assignmentrestaurant.Food">
++
++    <TextView
++        android:id="@+id/tittleFood"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++
++        android:layout_marginTop="30dp"
++        android:fontFamily="sans-serif-condensed"
++        android:text="@string/options"
++        android:textAlignment="center"
++        android:textAppearance="@android:style/TextAppearance.Holo"
++        android:textColor="@android:color/background_light"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        tools:ignore="ObsoleteLayoutParam,UnusedAttribute"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="87dp" />
++
++    <CheckBox
++        android:id="@+id/checkbox_meat"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt1"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_cheese"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt2"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_3"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt3"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_4"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt4"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_5"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt5"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_6"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt6"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_7"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt7"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_8"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt8"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_9"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt9"
++        android:textColor="@color/colorAccent" />
++
++    <CheckBox
++        android:id="@+id/checkbox_10"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:buttonTint="@android:color/background_light"
++        android:text="@string/foodOpt10"
++        android:textColor="@color/colorAccent" />
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <Button
++            android:id="@+id/buttonBack"
++            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
++            android:layout_alignParentLeft="true"
++            android:layout_alignParentStart="true"
++            android:text="@string/back"
++            android:textAlignment="center"
++            android:textColor="@color/colorAccent"
++            android:textSize="24sp"
++            android:textStyle="bold" />
++
++        <Button
++            android:id="@+id/buttonCheckOut"
++            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
++            android:layout_alignParentEnd="true"
++            android:layout_alignParentRight="true"
++            android:onClick="onCLick"
++            android:text="@string/finish"
++            android:textAlignment="center"
++            android:textColor="@color/colorAccent"
++            android:textSize="24sp"
++            android:textStyle="bold" />
++    </RelativeLayout>
++</LinearLayout>
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision )
++++ .idea/modules.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/AssignmentRestaurant.iml" filepath="$PROJECT_DIR$/AssignmentRestaurant.iml" />
++      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/runConfigurations.xml	(revision )
++++ .idea/runConfigurations.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,61 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ciconi.assignmentrestaurant">
++
++    <application
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:roundIcon="@mipmap/ic_launcher_round"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme">
++
++        <activity android:name=".MainActivity">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++        <activity android:name=".Cuisines">
++
++            <intent-filter>
++                <action android:name="com.ciconi.assignmentrestaurant.Cuisines" />
++
++                <category android:name="android.intent.category.DEFAULT" />
++            </intent-filter>
++        </activity>
++        <activity android:name=".Restaurants">
++            <intent-filter>
++                <action android:name="com.ciconi.assignmentrestaurant.Restaurants" />
++
++                <category android:name="android.intent.category.DEFAULT" />
++            </intent-filter>
++        </activity>
++        <activity android:name=".Food" >
++        <intent-filter>
++            <action android:name="com.ciconi.assignmentrestaurant.Food" />
++
++            <category android:name="android.intent.category.DEFAULT" />
++        </intent-filter>
++        </activity>
++        <activity
++            android:name=".CheckOut"
++            android:label="@string/title_activity_summary" >
++        <intent-filter>
++            <action android:name="com.ciconi.assignmentrestaurant.CheckOut" />
++            <category android:name="android.intent.category.DEFAULT" />
++        </intent-filter>
++        </activity>
++        <activity
++            android:name=".CustomerInfo"
++            android:label="@string/title_activity_client_form">
++            <intent-filter>
++                <action android:name="com.ciconi.assignmentrestaurant.ClientForm" />
++
++                <category android:name="android.intent.category.DEFAULT" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,25 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in C:\Android\sdk/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision )
++++ .gitignore	(revision )
+@@ -0,0 +1,9 @@
++*.iml
++.gradle
++/local.properties
++/.idea/workspace.xml
++/.idea/libraries
++.DS_Store
++/build
++/captures
++.externalNativeBuild
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision )
++++ .idea/gradle.xml	(revision )
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++        <option name="resolveModulePerSourceSet" value="false" />
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/MainActivity.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/MainActivity.java	(revision )
+@@ -0,0 +1,32 @@
++package com.ciconi.assignmentrestaurant;
++import android.view.View;
++
++import android.app.Activity;
++import android.content.Intent;
++import android.os.Bundle;
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++public class MainActivity extends Activity {
++
++    /**
++     * Oncreate Method
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setTitle("Simply Food APP");
++        setContentView(R.layout.activity_main);
++    }
++
++    /**
++     * Click to go to next activity
++     * @param view
++     */
++    public void onClick(View view){
++        startActivity(new Intent("com.ciconi.assignmentrestaurant.Cuisines"));
++
++    }
++}
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/CustomerInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/CustomerInfo.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/CustomerInfo.java	(revision )
+@@ -0,0 +1,86 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.app.Activity;
++import android.view.Display;
++import android.view.View;
++import android.widget.EditText;
++import android.widget.RadioButton;
++import android.widget.Toast;
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++public class CustomerInfo extends Activity {
++    /**
++     * Variables
++     */
++
++    private EditText name;
++    private EditText address;
++    private EditText cardNumber;
++    private EditText email;
++    private EditText age;
++
++    private Intent intentValue;
++
++
++    /**
++     *
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setTitle("Customer Information");
++        setContentView(R.layout.activity_client_form);
++    }
++
++    /**
++     *
++     * @param view
++     */
++    public void onClick(View view) {
++
++        name   = findViewById(R.id.signup_input_name);
++        address =findViewById(R.id.signup_input_addr);
++        cardNumber = findViewById(R.id.signup_input_Card);
++        email = findViewById(R.id.signup_input_email);
++        age = findViewById(R.id.signup_input_age);
++
++        //fill out all fields
++        if(name.getText().toString().equals("")){
++            DisplayToast("Please insert your Full Name");
++        }else if(address.getText().toString().equals("")){
++            DisplayToast("Please insert your Address");
++        }
++        else if(cardNumber.getText().toString().equals("")){
++            DisplayToast("Please insert your Card Number");
++        }else if(email.getText().toString().equals(""))
++        {
++            DisplayToast("Please insert your E-mail");
++        }else if(age.getText().toString().equals(""))
++        {
++            DisplayToast("Please insert your Age");
++        }
++        else {
++            //go to next activity
++            intentValue = new Intent(getApplicationContext(), CheckOut.class);
++
++            intentValue.putExtra("name",name.getText().toString());
++            intentValue.putExtra("address",address.getText().toString());
++            intentValue.putExtra("email",email.getText().toString());
++            intentValue.putExtra("cardNumber",cardNumber.getText().toString());
++
++
++            startActivity(intentValue);
++        }
++
++    }
++    private void DisplayToast(String msg)
++    {
++        Toast.makeText(getBaseContext(), msg,
++                Toast.LENGTH_SHORT).show();
++    }
++}
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: .idea/copyright/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/copyright/profiles_settings.xml	(revision )
++++ .idea/copyright/profiles_settings.xml	(revision )
+@@ -0,0 +1,3 @@
++<component name="CopyrightManager">
++  <settings default="" />
++</component>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_cuisines.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_cuisines.xml	(revision )
++++ app/src/main/res/layout/activity_cuisines.xml	(revision )
+@@ -0,0 +1,140 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context="com.ciconi.assignmentrestaurant.Cuisines"
++    android:background="@drawable/back"  >
++
++    <RelativeLayout
++        android:id="@+id/RelatView1"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        tools:ignore="MissingConstraints,UselessParent"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="8dp">
++
++        <TextView
++            android:id="@+id/tittle"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_alignParentLeft="true"
++            android:layout_alignParentStart="true"
++            android:layout_alignParentTop="true"
++            android:layout_marginTop="30dp"
++
++            android:fontFamily="sans-serif-condensed"
++            android:text="@string/choose_one_type_of_cuisines"
++            android:textAlignment="center"
++            android:textAppearance="@android:style/TextAppearance.Holo"
++            android:textColor="@android:color/background_light"
++            android:textSize="30sp"
++            android:textStyle="bold"
++            tools:ignore="UnusedAttribute"
++            tools:layout_editor_absoluteX="8dp"
++            tools:layout_editor_absoluteY="87dp" />
++
++        <RadioGroup
++            android:id="@+id/radioGroupRest"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_alignTop="@+id/tittle">
++
++            <RadioButton
++                android:id="@+id/radioButtonItalian"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_alignParentLeft="true"
++
++                android:layout_alignParentStart="true"
++                android:layout_alignParentTop="true"
++                android:layout_marginTop="95dp"
++                android:buttonTint="@android:color/background_light"
++                android:checked="false"
++                android:text="@string/italian"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp"
++                tools:ignore="ObsoleteLayoutParam" />
++
++            <RadioButton
++                android:id="@+id/radioButtonCanadian"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++
++                android:layout_marginTop="40dp"
++                android:buttonTint="@android:color/background_light"
++                android:checked="false"
++                android:text="@string/canadian"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp" />
++
++            <RadioButton
++                android:id="@+id/radioButtonFrench"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++
++                android:layout_marginTop="40dp"
++                android:buttonTint="@android:color/background_light"
++                android:checked="false"
++                android:text="@string/french"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp" />
++
++            <RadioButton
++                android:id="@+id/radioButtonBrazilian"
++                android:layout_width="match_parent"
++
++                android:layout_height="wrap_content"
++                android:layout_marginTop="40dp"
++                android:buttonTint="@android:color/background_light"
++                android:checked="false"
++                android:text="@string/brazilian"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp" />
++
++            <TextView
++                android:id="@+id/textView"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_weight="1"
++                android:text="@android:color/background_light" />
++
++        </RadioGroup>
++        <RelativeLayout
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++
++            <Button
++                android:id="@+id/buttonBack"
++                style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_alignParentBottom="true"
++                android:layout_alignParentLeft="true"
++                android:layout_alignParentStart="true"
++
++                android:text="@string/back"
++                android:textAlignment="center"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp"
++                android:textStyle="bold" />
++
++            <Button
++                android:id="@+id/buttonNext"
++                style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_alignParentBottom="true"
++                android:layout_alignParentEnd="true"
++                android:layout_alignParentRight="true"
++                android:onClick="onClick"
++                android:text="@string/next"
++                android:textAlignment="center"
++                android:textColor="@color/colorAccent"
++                android:textSize="24sp"
++                android:textStyle="bold" />
++        </RelativeLayout>
++    </RelativeLayout>
++</LinearLayout>
+Index: app/src/androidTest/java/com/ciconi/assignmentrestaurant/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/ciconi/assignmentrestaurant/ExampleInstrumentedTest.java	(revision )
++++ app/src/androidTest/java/com/ciconi/assignmentrestaurant/ExampleInstrumentedTest.java	(revision )
+@@ -0,0 +1,26 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.content.Context;
++import android.support.test.InstrumentationRegistry;
++import android.support.test.runner.AndroidJUnit4;
++
++import org.junit.Test;
++import org.junit.runner.RunWith;
++
++import static org.junit.Assert.*;
++
++/**
++ * Instrumentation test, which will execute on an Android device.
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++@RunWith(AndroidJUnit4.class)
++public class ExampleInstrumentedTest {
++    @Test
++    public void useAppContext() throws Exception {
++        // Context of the app under test.
++        Context appContext = InstrumentationRegistry.getTargetContext();
++
++        assertEquals("com.ciconi.assignmentrestaurant", appContext.getPackageName());
++    }
++}
+Index: app/src/main/res/layout/activity_checkout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_checkout.xml	(revision )
++++ app/src/main/res/layout/activity_checkout.xml	(revision )
+@@ -0,0 +1,55 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="@drawable/back"
++    tools:context="com.ciconi.assignmentrestaurant.CheckOut">
++
++    <TextView
++        android:id="@+id/tittle"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:layout_alignParentTop="true"
++        android:layout_marginTop="30dp"
++
++        android:fontFamily="sans-serif-condensed"
++        android:text="@string/order_summary"
++        android:textAlignment="center"
++        android:textAppearance="@android:style/TextAppearance.Holo"
++        android:textColor="@android:color/background_light"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        tools:ignore="ObsoleteLayoutParam,UnusedAttribute"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="87dp" />
++
++    <TextView
++        android:id="@+id/textView1"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="87dp"
++        android:background="@color/bg_color"
++        android:gravity="start|top"
++        android:textColor="@color/colorAccent"
++        android:layout_below="@+id/textView2"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:layout_below="@+id/tittle"
++        android:layout_marginTop="35dp"
++        android:background="@color/bg_color"
++        android:gravity="start|top"
++        android:text=""
++        android:textColor="@color/colorAccent" />
++
++</RelativeLayout>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision )
++++ gradle/wrapper/gradle-wrapper.properties	(revision )
+@@ -0,0 +1,6 @@
++#Mon Sep 25 19:46:01 BRT 2017
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/Restaurants.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/Restaurants.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/Restaurants.java	(revision )
+@@ -0,0 +1,140 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.app.Activity;
++import android.content.Intent;
++import android.content.res.Resources;
++import android.os.Bundle;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.ListView;
++import android.widget.Toast;
++
++import java.util.ArrayList;
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++public class Restaurants extends Activity {
++
++    /**
++     * Global Variables
++     */
++    //private static ArrayList<String> MyArray = null;
++    private ListView listView;
++    private Intent intentValue;
++
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        Resources res = getResources();
++        String[] valuesRest = res.getStringArray(R.array.restaurantsOptions);
++        for (String rest : valuesRest) {
++            menu.add(rest);
++
++        }
++        //menu.add("String");
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem m) {
++        int itemPosition = m.getItemId();
++
++        String itemValue = (String) listView.getItemAtPosition(itemPosition);
++
++        if (itemPosition == 0) {
++            Send(itemValue);
++        } else {
++            // Show Alert
++            Toast.makeText(getApplicationContext(),
++                    "Under Construction" + "Position :"
++                            + itemPosition + "  " +
++                            "ListItem : " + itemValue,
++                    Toast.LENGTH_LONG)
++                    .show();
++        }
++
++        return true;
++    }
++
++
++
++
++    /**
++     *
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_restaurants);
++
++        Intent intent = getIntent();
++        String typeCousines = intent.getStringExtra("cuisine");
++
++       // setTitle(typeCousines +" Restaurants");
++        /*Save Restaurant*/
++       // Save(typeCousines);
++
++        listView = findViewById(R.id.listItalianRestaurants);
++        Resources res = getResources();
++        String[] valuesRest = res.getStringArray(R.array.restaurantsOptions);
++        ArrayAdapter<String> adapter = new ArrayAdapter<>
++                (this, android.R.layout.simple_list_item_1,
++                        android.R.id.text1, valuesRest);
++
++
++        // Assign adapter to ListView
++        listView.setAdapter(adapter);
++
++        // ListView Item Click Listener
++        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++            @Override
++            public void onItemClick(AdapterView<?> parent, View view,
++                                    int position, long id) {
++                int itemPosition = position;
++
++                String itemValue = (String) listView.getItemAtPosition(position);
++
++                if (itemPosition == 0) {
++                    Send(itemValue);
++                }
++                else
++                    {
++                    // Show Alert
++                    Toast.makeText(getApplicationContext(),
++                            "Under Construction" + "Position :"
++                                    + itemPosition + "  " +
++                                    "ListItem : " + itemValue,
++                            Toast.LENGTH_LONG)
++                            .show();
++                    }
++                }
++            });
++    }
++
++    /**
++     * @param itemPosition
++     */
++    private void Send(String itemPosition) {
++        Save(itemPosition);
++        intentValue = new Intent(getApplicationContext(), Food.class);
++        intentValue.putExtra("Restaurant", itemPosition);
++        startActivity(intentValue);
++    }
++    /**
++     * @param c
++     */
++    private void Save(String c) {
++
++        Singleton save = Singleton.getInstance();
++        //Test
++        System.out.println("Instance ID 2 :" + save.hashCode());
++        //Test
++        save.addRestaurant(c);
++    }
++
++}
+Index: app/src/main/res/layout/activity_restaurants.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_restaurants.xml	(revision )
++++ app/src/main/res/layout/activity_restaurants.xml	(revision )
+@@ -0,0 +1,61 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    tools:context="com.ciconi.assignmentrestaurant.Restaurants"
++    android:background="@drawable/back">
++
++    <TextView
++        android:id="@+id/tittle"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:layout_alignParentTop="true"
++        android:layout_marginTop="30dp"
++
++        android:fontFamily="sans-serif-condensed"
++        android:text="@string/chooseRest"
++        android:textAlignment="center"
++        android:textAppearance="@android:style/TextAppearance.Holo"
++        android:textColor="@android:color/background_light"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        tools:ignore="ObsoleteLayoutParam,UnusedAttribute"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="87dp" />
++
++    <ListView
++        android:id="@+id/listItalianRestaurants"
++        android:layout_width="match_parent"
++        android:layout_height="347dp"
++        android:background="@android:color/transparent"
++        android:cacheColorHint="@color/colorAccent"
++        android:hapticFeedbackEnabled="false"
++        android:textColor="@android:color/background_light"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="8dp" />
++<RelativeLayout
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <Button
++        android:id="@+id/buttonBack"
++        style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++        android:layout_width="match_parent"
++        android:layout_height="50dp"
++        android:layout_alignParentBottom="true"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:text="Back"
++        android:textAlignment="center"
++        android:textColor="@color/colorAccent"
++        android:textSize="28sp"
++        android:textStyle="bold"
++        tools:ignore="HardcodedText" />
++    </RelativeLayout>
++</LinearLayout>
++
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/Singleton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/Singleton.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/Singleton.java	(revision )
+@@ -0,0 +1,118 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.util.Log;
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++
++class Singleton extends OrderDetail {
++    /**
++     *
++     */
++
++    private static  Singleton ourInstance = null;
++    private  List<OrderDetail> Orders=null;
++    private  List<String> foods=null;
++    private String mString;
++
++
++    /**
++     *
++     */
++    private Singleton() {
++        Orders = new ArrayList<>();
++        foods = new ArrayList<>();
++        //Test
++       // mString = "Hello";
++        //Test
++
++    }
++
++    public List<String> getFoods() {
++        return foods;
++    }
++
++    void addFoods(String food){
++    foods.add(food);
++    }
++    /**
++     *
++     * @return
++     */
++    public static Singleton getInstance() {
++
++        if (ourInstance == null)
++        {
++            ourInstance = new Singleton();
++        }
++
++        return ourInstance;
++    }
++
++    /**
++     *
++     * @param c
++     */
++    public void addCusines(String c){
++
++        OrderDetail ds = new OrderDetail();
++        setCuisine(c);
++
++        Orders.add(ds);
++
++    }
++
++    /**
++     *
++     * @param c
++     */
++    public void addRestaurant(String c){
++        OrderDetail ds = new OrderDetail();
++
++        setRestaurant(c);
++        Orders.add(ds);
++
++    }
++
++    /**
++     *
++     * @param c
++     */
++    public void addDishes(List<String> c){
++        OrderDetail ds = new OrderDetail();
++        setDishes(c);
++        Orders.add(ds);
++    }
++
++    /**
++     *
++     * @return
++     */
++    public  List<OrderDetail> getAllCourses() {
++
++        for (OrderDetail s : Orders)
++        {
++            Log.d("My array list content: ", s.toString());
++        }
++      return  Orders;
++    }
++
++    /**
++     *
++     * @return
++     */
++    public String getString(){
++            return this.mString;
++        }
++
++    /**
++     *
++     * @param value
++     */
++    public void setString(String value){
++            mString = value;
++        }
++}
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision )
++++ .idea/compiler.xml	(revision )
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <resourceExtensions />
++    <wildcardResourcePatterns>
++      <entry name="!?*.java" />
++      <entry name="!?*.form" />
++      <entry name="!?*.class" />
++      <entry name="!?*.groovy" />
++      <entry name="!?*.scala" />
++      <entry name="!?*.flex" />
++      <entry name="!?*.kt" />
++      <entry name="!?*.clj" />
++      <entry name="!?*.aj" />
++    </wildcardResourcePatterns>
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="false">
++        <processorPath useClasspath="true" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,51 @@
++<resources>
++    <string name="app_name">Assignment #2</string>
++    <string name="all_food">Simply Food</string>
++    <string name="enter">ENTER</string>
++
++    <string name="choose_one_type_of_cuisines">Choose one type of Cuisines:</string>
++    <string name="choose">Choose</string>
++    <string name="brazilian">BRAZILIAN</string>
++    <string name="canadian">CANADIAN</string>
++    <string name="french">FRENCH</string>
++    <string name="italian">ITALIAN</string>
++    <string name="restaurant_2">Restaurant 2</string>
++    <string name="restaurant_3">Restaurant 3</string>
++    <string name="restaurant_1">Restaurant 1</string>
++
++    <string-array name="restaurantsOptions">
++        <item>Mercury Restaurant</item>
++        <item>Venus Italian Restaurant</item>
++        <item>Earth Pasta</item>
++        <item>Mars Spaghetti</item>
++    </string-array>
++    <string name="title_activity_dishes">Dishes</string>
++    <string name="foodOpt1">food1</string>
++    <string name="foodOpt2">food2</string>
++    <string name="foodOpt3">food3</string>
++    <string name="foodOpt4">food4</string>
++    <string name="foodOpt5">food5</string>
++    <string name="foodOpt6">food6</string>
++    <string name="foodOpt7">food7</string>
++    <string name="foodOpt8">food8</string>
++    <string name="foodOpt9">food9</string>
++    <string name="foodOpt10">food10</string>
++
++    <string name="title_activity_summary">Summary</string>
++    <string name="title_activity_client_form">ClientForm</string>
++    <string name="chooseRest">Choose one Restaurant</string>
++    <string name="back">Back</string>
++    <string name="finish">Finish</string>
++    <string name="next">Next</string>
++    <string name="customerName">Name</string>
++    <string name="address">Address</string>
++    <string name="card_number">Card Number</string>
++    <string name="email">Email</string>
++    <string name="age">Age</string>
++    <string name="gender">Gender:</string>
++    <string name="male">Male</string>
++    <string name="female">Female</string>
++    <string name="finsh">Finsh</string>
++    <string name="order_summary">Order Summary</string>
++    <string name="options">Options</string>
++</resources>
+Index: app/src/main/res/layout/activity_client_form.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_client_form.xml	(revision )
++++ app/src/main/res/layout/activity_client_form.xml	(revision )
+@@ -0,0 +1,159 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++
++    android:layout_height="wrap_content"
++    android:background="@drawable/back"
++    android:gravity="center"
++    android:orientation="vertical"
++    android:padding="10dp"
++    tools:context="com.ciconi.assignmentrestaurant.CustomerInfo">
++
++    <TextView
++        android:id="@+id/CustomerInfo"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:layout_alignParentTop="true"
++        android:layout_marginTop="30dp"
++
++        android:fontFamily="sans-serif-condensed"
++        android:text="Information"
++        android:textAlignment="center"
++        android:textAppearance="@android:style/TextAppearance.Holo"
++        android:textColor="@android:color/background_light"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        tools:ignore="ObsoleteLayoutParam,UnusedAttribute"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="87dp" />
++
++    <EditText
++        android:id="@+id/signup_input_name"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/customerName"
++        android:inputType="textPersonName"
++        android:textColor="@color/colorAccent"
++        android:textColorHint="@android:color/background_light"
++        android:maxLength="100"/>
++
++    <EditText
++        android:id="@+id/signup_input_addr"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/address"
++        android:inputType="text|textPostalAddress"
++        android:selectAllOnFocus="false"
++        android:textColor="@color/colorAccent"
++        android:textColorHint="@android:color/background_light"
++        android:maxLength="100"/>
++
++    <EditText
++        android:id="@+id/signup_input_Card"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/card_number"
++        android:inputType="number"
++        android:textColor="@color/colorAccent"
++        android:textColorHint="@android:color/background_light"
++        android:maxLength="16"/>
++
++    <EditText
++        android:id="@+id/signup_input_email"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/email"
++        android:inputType="textEmailAddress"
++        android:textColor="@color/colorAccent"
++        android:textColorHint="@android:color/background_light"
++        android:maxLength="100"/>
++
++    <EditText
++        android:id="@+id/signup_input_age"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/age"
++        android:inputType="number"
++        android:textColor="@color/colorAccent"
++        android:textColorHint="@android:color/background_light"
++        android:maxLength="2"/>
++
++    <TextView
++        android:id="@+id/gender_textview"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingRight="15dp"
++        android:text="@string/gender"
++        android:textColor="@android:color/background_light"
++        android:textSize="18sp"
++        />
++
++    <RadioGroup
++        android:id="@+id/gender_radio_group"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_toRightOf="@+id/gender_textview"
++        android:orientation="horizontal">
++
++        <RadioButton
++            android:id="@+id/male_radio_btn"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:checked="true"
++            android:text="@string/male"
++            android:textColor="@color/colorAccent" />
++
++        <RadioButton
++            android:id="@+id/female_radio_btn"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="@string/female"
++            android:textColor="@color/colorAccent" />
++    </RadioGroup>
++
++    <RelativeLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        >
++        <Button
++            android:id="@+id/buttonBack"
++            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
++            android:layout_alignParentLeft="true"
++            android:layout_alignParentStart="true"
++
++            android:text="@string/back"
++            android:textAlignment="center"
++            android:textColor="@color/colorAccent"
++            android:textSize="24sp"
++            android:textStyle="bold" />
++
++        <Button
++            android:id="@+id/buttonCheckOut"
++            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
++            android:layout_alignParentEnd="true"
++            android:layout_alignParentRight="true"
++            android:onClick="onClick"
++            android:text="@string/finsh"
++            android:textAlignment="center"
++            android:textColor="@color/colorAccent"
++            android:textSize="24sp"
++            android:textStyle="bold" />
++    </RelativeLayout>
++
++
++</LinearLayout>
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#3f51b5</color>
++    <color name="colorPrimaryDark">#303f9f</color>
++    <color name="colorAccent">#00ffdd</color>
++    <color name="bg_color">#000000</color>
++</resources>
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/OrderDetail.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/OrderDetail.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/OrderDetail.java	(revision )
+@@ -0,0 +1,119 @@
++package com.ciconi.assignmentrestaurant;
++
++import java.io.Serializable;
++import java.util.List;
++
++/**
++ * Created by ZeusAC on 2017-09-28.
++ */
++
++class OrderDetail implements Serializable {
++
++    /**
++     *
++     */
++    private String restaurant;
++    private String cuisine;
++    private List<String> dishes;
++
++    /**
++     * Constructor
++     */
++    OrderDetail(){
++    super();
++    }
++
++    /**
++     * Constructor
++     * @param restaurant
++     * @param cuisine
++     * @param dishes
++     */
++    public OrderDetail(String restaurant, String cuisine, List<String> dishes) {
++        this.restaurant = restaurant;
++        this.cuisine = cuisine;
++        this.dishes = dishes;
++    }
++
++    /**
++     *
++     * @return
++     */
++    public String getRestaurant() {
++        return restaurant;
++    }
++
++    /**
++     *
++     * @param restaurant
++     */
++    void setRestaurant(String restaurant) {
++        this.restaurant = restaurant;
++    }
++
++    /**
++     *
++     * @return
++     */
++    String getCuisine() {
++        return cuisine;
++    }
++
++    /**
++     *
++     * @param cuisine
++     */
++    void setCuisine(String cuisine) {
++        this.cuisine = cuisine;
++    }
++
++    /**
++     *
++     * @return
++     */
++    public List<String> getDishes() {
++        return dishes;
++    }
++
++    /**
++     *
++     * @param dishes
++     */
++    void setDishes(List<String> dishes) {
++        this.dishes = dishes;
++    }
++
++
++    /**
++     *
++     * @return
++     */
++    public String toString() {
++        return  "Cuisine :  " + getCuisine() +
++                "\nRestaurant : " + restaurant+
++                "\nDishes: " + dishes;
++    }
++
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++        if (!(o instanceof OrderDetail)) return false;
++
++        OrderDetail that = (OrderDetail) o;
++
++        if (restaurant != null ? !restaurant.equals(that.restaurant) : that.restaurant != null)
++            return false;
++        if (cuisine != null ? !cuisine.equals(that.cuisine) : that.cuisine != null) return false;
++        return dishes != null ? dishes.equals(that.dishes) : that.dishes == null;
++
++    }
++
++    @Override
++    public int hashCode() {
++        int result = restaurant != null ? restaurant.hashCode() : 0;
++        result = 31 * result + (cuisine != null ? cuisine.hashCode() : 0);
++        result = 31 * result + (dishes != null ? dishes.hashCode() : 0);
++        return result;
++    }
++}
++
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/Food.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/Food.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/Food.java	(revision )
+@@ -0,0 +1,128 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.app.Activity;
++import android.view.View;
++import android.widget.CheckBox;
++import android.widget.LinearLayout;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ *  Created by ZeusAC on 2017-09-25.
++ *  Food Class
++ */
++public class Food extends Activity {
++
++    /**
++     * Global Variables
++     */
++    private List<String> foodListOpt;
++    private Intent intentValue;
++
++    /**
++     *
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++
++        Intent intent = getIntent();
++        String rest = intent.getStringExtra("Restaurant");
++        setTitle(rest);
++        setContentView(R.layout.activity_food);
++
++
++
++    }
++
++    /**
++     *
++     * @param view
++     */
++    public  void onCLick(View view){
++
++        for (int i = 0; i < ((LinearLayout)findViewById(R.id.foodList)).getChildCount(); i++) {
++            if (((LinearLayout)findViewById(R.id.foodList)).getChildAt(i) instanceof CheckBox)
++            {
++                CheckBox cc = (CheckBox)((LinearLayout)findViewById(R.id.foodList)).getChildAt(i);
++
++                if (cc.isChecked()) {
++                    Singleton save = Singleton.getInstance();
++                    save.addFoods(cc.getText().toString());
++
++                }
++            }
++        }
++
++        //save.addDishes(foodListOpt);
++        Send(foodListOpt);
++    }
++//    public void onClick2(View view) {
++//
++//       // boolean checked = ((CheckBox) view).isChecked();
++//
++//        //int totalamount=0;
++//
++//        //StringBuilder totalResult=new StringBuilder();
++//        System.out.println("zzzzz zzzzzzz :");
++//        //
++//       // Singleton save = Singleton.getInstance();
++//
++//        if (((CheckBox) view).isChecked()){
++//            DisplayToast("CheckBox is checked");
++//    }
++//        //totalResult.append("Selected Items:");
++////        switch (view.getId()) {
++////            case R.id.checkbox_meat:
++////                if (checked) {
++////          //          totalResult.append("\nfood1 100Rs");
++////            //        totalamount+=100;
++////                    //Send();
++////
++////                    foodListOpt.add("Meet");
++////                }
++////            case R.id.checkbox_cheese:
++////                if (checked) {
++////                    foodListOpt.add("Cheese");
++////              //      totalResult.append("\nfood1 100Rs");
++////                //    totalamount+=100;
++////
++////                }
++////                break;
++////
++////        }
++//
++//        //save.addDishes(foodListOpt);
++//       // Send();
++////        totalResult.append("\nTotal: "+totalamount+"Rs");
++////        //Displaying the message on the toast
++////        Toast.makeText(getApplicationContext(), totalResult.toString(), Toast.LENGTH_LONG).show();
++//    }
++
++    /**
++     *
++     */
++    private void Send(List dd) {
++
++        Save(dd);
++        //Singleton save =  Singleton.getInstance();
++        //save.getAllCourses();
++        intentValue = new Intent(getApplicationContext(), CustomerInfo.class);
++        startActivity(intentValue);
++
++    }
++
++    /**
++     *
++     * @param c
++     */
++    private void Save(List c){
++        Singleton save =  Singleton.getInstance();
++        System.out.println("Instance ID 3 :"+ save.hashCode());
++        save.addDishes(c);
++    }
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision )
++++ .idea/misc.xml	(revision )
+@@ -0,0 +1,64 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="EntryPointsManager">
++    <entry_points version="2.0" />
++  </component>
++  <component name="JavadocGenerationManager">
++    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../.." />
++    <option name="OPTION_SCOPE" value="protected" />
++    <option name="OPTION_HIERARCHY" value="true" />
++    <option name="OPTION_NAVIGATOR" value="true" />
++    <option name="OPTION_INDEX" value="true" />
++    <option name="OPTION_SEPARATE_INDEX" value="true" />
++    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
++    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
++    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
++    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
++    <option name="OPTION_DEPRECATED_LIST" value="true" />
++    <option name="OTHER_OPTIONS" />
++    <option name="HEAP_SIZE" />
++    <option name="LOCALE" value="test" />
++    <option name="OPEN_IN_BROWSER" value="true" />
++    <option name="OPTION_INCLUDE_LIBS" value="false" />
++  </component>
++  <component name="NullableNotNullManager">
++    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
++    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
++    <option name="myNullables">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
++        </list>
++      </value>
++    </option>
++    <option name="myNotNulls">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
++        </list>
++      </value>
++    </option>
++  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
++    <OptionsSetting value="true" id="Add" />
++    <OptionsSetting value="true" id="Remove" />
++    <OptionsSetting value="true" id="Checkout" />
++    <OptionsSetting value="true" id="Update" />
++    <OptionsSetting value="true" id="Status" />
++    <OptionsSetting value="true" id="Edit" />
++    <ConfirmationsSetting value="0" id="Add" />
++    <ConfirmationsSetting value="0" id="Remove" />
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/build/classes" />
++  </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,30 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 26
++    buildToolsVersion "26.0.1"
++    defaultConfig {
++        applicationId "com.ciconi.assignmentrestaurant"
++        minSdkVersion 15
++        targetSdkVersion 26
++        versionCode 1
++        versionName "1.0"
++        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/menu'] } }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
++        exclude group: 'com.android.support', module: 'support-annotations'
++    })
++    compile 'com.android.support.constraint:constraint-layout:1.0.2'
++    testCompile 'junit:junit:4.12'
++}
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision )
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -0,0 +1,54 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="fill_parent"
++    android:layout_height="fill_parent"
++    android:orientation="vertical"
++    android:background="@drawable/back"
++    tools:context="com.ciconi.assignmentrestaurant.MainActivity">
++
++
++    <RelativeLayout
++        android:id="@+id/RelativeMain"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        tools:layout_editor_absoluteX="8dp"
++        tools:layout_editor_absoluteY="8dp"
++        tools:ignore="UselessParent">
++        <TextView
++            android:id="@+id/textViewTitle"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:fontFamily="sans-serif-condensed"
++            android:text="@string/all_food"
++            android:textAlignment="center"
++            android:textAllCaps="true"
++            android:textColor="@color/colorAccent"
++            android:textColorHighlight="@color/colorPrimary"
++            android:textSize="100sp"
++            android:textStyle="bold"
++            android:typeface="normal"
++            app:layout_constraintRight_toRightOf="parent"
++            tools:layout_editor_absoluteY="0dp"
++            tools:ignore="UnusedAttribute"/>
++
++        <Button
++            android:id="@+id/buttonEnter"
++            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
++            android:layout_width="300dp"
++            android:layout_height="90dp"
++            android:layout_marginBottom="73dp"
++
++            android:elevation="0dp"
++            android:onClick="onClick"
++            android:text="@string/enter"
++            android:textColor="@color/colorAccent"
++            android:textSize="28sp"
++            android:textStyle="bold"
++            android:layout_alignParentBottom="true"
++            android:layout_centerHorizontal="true" />
++    </RelativeLayout>
++
++
++</LinearLayout>
+Index: app/src/test/java/com/ciconi/assignmentrestaurant/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/ciconi/assignmentrestaurant/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/ciconi/assignmentrestaurant/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,17 @@
++package com.ciconi.assignmentrestaurant;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle.properties	(revision )
++++ gradle.properties	(revision )
+@@ -0,0 +1,17 @@
++# Project-wide Gradle settings.
++
++# IDE (e.g. Android Studio) users:
++# Gradle settings configured through the IDE *will override*
++# any settings specified in this file.
++
++# For more details on how to configure your build environment visit
++# http://www.gradle.org/docs/current/userguide/build_environment.html
++
++# Specifies the JVM arguments used for the daemon process.
++# The setting is particularly useful for tweaking memory settings.
++org.gradle.jvmargs=-Xmx1536m
++
++# When configured, Gradle will run in incubating parallel mode.
++# This option should only be used with decoupled projects. More details, visit
++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
++# org.gradle.parallel=true
+Index: gradlew
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew	(revision )
++++ gradlew	(revision )
+@@ -0,0 +1,160 @@
++#!/usr/bin/env bash
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS=""
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn ( ) {
++    echo "$*"
++}
++
++die ( ) {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++esac
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >/dev/null
++APP_HOME="`pwd -P`"
++cd "$SAVED" >/dev/null
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++    JAVACMD=`cygpath --unix "$JAVACMD"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=$((i+1))
++    done
++    case $i in
++        (0) set -- ;;
++        (1) set -- "$args0" ;;
++        (2) set -- "$args0" "$args1" ;;
++        (3) set -- "$args0" "$args1" "$args2" ;;
++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
++function splitJvmOpts() {
++    JVM_OPTS=("$@")
++}
++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
++
++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+Index: app/src/main/java/com/ciconi/assignmentrestaurant/CheckOut.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ciconi/assignmentrestaurant/CheckOut.java	(revision )
++++ app/src/main/java/com/ciconi/assignmentrestaurant/CheckOut.java	(revision )
+@@ -0,0 +1,60 @@
++package com.ciconi.assignmentrestaurant;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.app.Activity;
++import android.widget.TextView;
++
++
++/**
++ * Created by ZeusAC on 2017-09-25.
++ */
++public class CheckOut extends Activity {
++    /**
++     * Variables
++     */
++    private TextView stringTextView;
++
++
++    /**
++     *
++     * @param savedInstanceState
++     */
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_checkout);
++
++        Intent intent = getIntent();
++        String nameSr = intent.getStringExtra("name");
++        String addressSr = intent.getStringExtra("address");
++        String emailSr = intent.getStringExtra("email");
++        String cardNumberSr = intent.getStringExtra("cardNumber");
++        stringTextView = findViewById(R.id.textView2);
++        stringTextView.setText(stringTextView.getText()
++                + "Client Information\n"+
++                  "------------------\n"
++                        +"Client: "+ nameSr
++                +"\n\nAddress: "+addressSr
++                +"\n\nE-mail: "+emailSr
++                +"\n\nCard Number: "+cardNumberSr
++                );
++
++
++        stringTextView = findViewById(R.id.textView1);
++
++        Singleton ds = Singleton.getInstance();
++        String s = "";
++
++        for (String  foods : ds.getFoods())
++            {
++                s+=foods+"\t";
++            }
++            stringTextView.setText(stringTextView.getText()+
++                            "Order Details\n"+
++                            "------------------\n"+
++                    "Type of Cuisine: "+ ds.getCuisine()+
++                    "\n\nRestaurant: "+ ds.getRestaurant()+
++                    "\n\nItems: "+ s );
++    }
++}
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision )
++++ build.gradle	(revision )
+@@ -0,0 +1,23 @@
++// Top-level build file where you can add configuration options common to all sub-projects/modules.
++
++buildscript {
++    repositories {
++        jcenter()
++    }
++    dependencies {
++        classpath 'com.android.tools.build:gradle:2.3.3'
++
++        // NOTE: Do not place your application dependencies here; they belong
++        // in the individual module build.gradle files
++    }
++}
++
++allprojects {
++    repositories {
++        jcenter()
++    }
++}
++
++task clean(type: Delete) {
++    delete rootProject.buildDir
++}

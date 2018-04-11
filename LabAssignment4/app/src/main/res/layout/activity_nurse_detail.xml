@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nursedetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ciconi.labassignment4.NurseDetailActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/nurse"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/nursedetail"
+        app:layout_constraintRight_toRightOf="@+id/nursedetail"
+        app:layout_constraintTop_toTopOf="@+id/nursedetail"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <EditText
+        android:id="@+id/NurseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:enabled="false"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"/>
+
+    <EditText
+        android:id="@+id/NurseLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:enabled="false"
+        app:layout_constraintLeft_toLeftOf="@+id/NurseName"
+        app:layout_constraintRight_toRightOf="@+id/NurseName"
+        app:layout_constraintTop_toTopOf="@+id/NurseName" />
+
+    <EditText
+        android:id="@+id/depart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/NurseLastName"
+        app:layout_constraintRight_toRightOf="@+id/NurseLastName"
+        app:layout_constraintTop_toTopOf="@+id/NurseLastName" />
+
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="@string/edit"
+        android:onClick="editNurse"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/NurseLastName"
+        app:layout_constraintRight_toRightOf="@+id/NurseLastName"
+        app:layout_constraintTop_toBottomOf="@+id/NurseLastName"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="@string/save"
+        android:onClick="saveNurse"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/NurseLastName"
+        app:layout_constraintRight_toRightOf="@+id/NurseLastName"
+        app:layout_constraintTop_toBottomOf="@+id/NurseLastName"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+</android.support.constraint.ConstraintLayout>

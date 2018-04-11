@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="true">
+    <!--<translate-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:fromXDelta="20%"-->
+        <!--android:fromYDelta="-20%"-->
+       <!---->
+        <!--android:repeatCount="infinite"-->
+        <!--android:duration="3000">-->
+    <!--</translate>-->
+    <!--<translate-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:fromYDelta="-100%"-->
+        <!--android:toYDelta="0"-->
+        <!--android:repeatCount="infinite"-->
+        <!--android:duration="3000">-->
+    <!--</translate>-->
+    <!--<translate android:toYDelta="-100"-->
+        <!--android:fillAfter="true"-->
+        <!--android:duration="2500"-->
+        <!--/>-->
+
+    <!--<translate android:toYDelta="100"-->
+        <!--android:fillAfter="true"-->
+        <!--android:duration="2500"-->
+        <!--android:startOffset="2500"/>-->
+    <scale
+        android:duration="2500"
+        android:startOffset="2500"
+        android:pivotX="5%"
+        android:pivotY="80%"
+        android:fromXScale="0.25"
+        android:fromYScale=".25"
+        android:toXScale="0.25"
+        android:toYScale="0.25" />
+
+    <rotate
+        android:fromDegrees="0"
+        android:toDegrees="360"
+        android:toYScale="0.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:repeatCount="infinite"
+        android:duration="10000" />
+
+
+    <rotate
+        android:fromDegrees="0"
+        android:toDegrees="-360"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:repeatCount="infinite"/>
+    <!--<rotate-->
+        <!--android:duration="15500"-->
+        <!--android:interpolator="@android:anim/linear_interpolator"-->
+        <!--android:pivotX="10%"-->
+        <!--android:repeatCount="infinite"-->
+        <!--android:toDegrees="360" />-->
+    <!--android:repeatMode="restart"-->
+</set>

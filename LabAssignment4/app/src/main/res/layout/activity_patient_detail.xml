@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/patdetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ciconi.labassignment4.PatientDetailActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/black"
+        android:text="@string/patient"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/patdetail"
+        app:layout_constraintRight_toRightOf="@+id/patdetail"
+        app:layout_constraintTop_toTopOf="@+id/patdetail"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <EditText
+        android:id="@+id/PatientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:enabled="false"
+        android:selectAllOnFocus="false"
+        app:layout_constraintLeft_toLeftOf="@+id/textView"
+        app:layout_constraintRight_toRightOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <EditText
+        android:id="@+id/PatientLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:enabled="false"
+        app:layout_constraintLeft_toLeftOf="@+id/PatientName"
+        app:layout_constraintRight_toRightOf="@+id/PatientName"
+        app:layout_constraintTop_toTopOf="@+id/PatientName" />
+
+    <EditText
+        android:id="@+id/depart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/PatientLastName"
+        app:layout_constraintRight_toRightOf="@+id/PatientLastName"
+        app:layout_constraintTop_toTopOf="@+id/PatientLastName" />
+
+    <EditText
+        android:id="@+id/room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/black"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/depart"
+        app:layout_constraintRight_toRightOf="@+id/depart"
+        app:layout_constraintTop_toTopOf="@+id/depart" />
+
+    <Spinner
+        android:id="@+id/doctors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/black"
+        android:clickable="false"
+        android:ems="10"
+        android:enabled="false"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/room"
+        app:layout_constraintRight_toRightOf="@+id/room"
+        app:layout_constraintTop_toTopOf="@+id/room"/>
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:onClick="EditPatient"
+        android:text="@string/edit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/PatientLastName"
+        app:layout_constraintRight_toRightOf="@+id/PatientLastName"
+        app:layout_constraintTop_toBottomOf="@+id/PatientLastName"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:onClick="savePatient"
+        android:text="@string/save"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/PatientLastName"
+        app:layout_constraintRight_toRightOf="@+id/PatientLastName"
+        app:layout_constraintTop_toBottomOf="@+id/PatientLastName"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+</android.support.constraint.ConstraintLayout>

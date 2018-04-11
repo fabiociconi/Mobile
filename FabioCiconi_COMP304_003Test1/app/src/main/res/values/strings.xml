@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">FabioCiconi_COMP304_003Test1</string>
+    <string name="stocks_charts">STOCKS CHARTS</string>
+    <string name="choose_a_stock">CHOOSE A STOCK</string>
+    <string name="chartsTitle">Charts:</string>
+
+    <string-array name="stocks">
+        <item>IBM</item>
+        <item>AAPL</item>
+        <item>ORCL</item>
+        <item>MSFT</item>
+        <item>GOOG</item>
+    </string-array>
+
+    <string-array name="ibmStockValues">
+        <item>92</item>
+        <item>113</item>
+        <item>90</item>
+        <item>102</item>
+        <item>125</item>
+        <item>120</item>
+        <item>115</item>
+
+    </string-array>
+
+    <string-array name="aaplStockValues">
+        <item>191</item>
+        <item>185</item>
+        <item>120</item>
+        <item>160</item>
+        <item>170</item>
+        <item>180</item>
+        <item>175</item>
+
+    </string-array>
+    <string-array name="orclStockValues">
+        <item>88</item>
+        <item>123</item>
+        <item>55</item>
+        <item>103</item>
+        <item>123</item>
+        <item>120</item>
+        <item>110</item>
+
+    </string-array>
+    <string-array name="msftStockValues">
+        <item>22</item>
+        <item>123</item>
+        <item>55</item>
+        <item>103</item>
+        <item>33</item>
+        <item>113</item>
+        <item>110</item>
+
+    </string-array>
+    <string-array name="googStockValues">
+        <item>55</item>
+        <item>122</item>
+        <item>23</item>
+        <item>1</item>
+        <item>33</item>
+        <item>100</item>
+        <item>110</item>
+
+    </string-array>
+</resources>

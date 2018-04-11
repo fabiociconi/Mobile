@@ -1,0 +1,12 @@
+<resources>
+    <!--<string name="app_name">Fabio_Ciconi_SecondMidTermPractice</string>-->
+    <string name="app_name">Second Practice Test 2017</string>
+    <string name="track_your_vitamin_intake">Track Your Vitamin Intake</string>
+    <string name="food_with_vitamin_a">Food with Vitamin A</string>
+    <string name="food_with_vitamin_b">Food with Vitamin B</string>
+    <string name="food_with_vitamin_c">Food with Vitamin C</string>
+    <string name="food_with_vitamin_d">Food with Vitamin D</string>
+    <string name="chart_name">Daily Vitamin Tracker</string>
+
+
+</resources>

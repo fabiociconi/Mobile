@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">LabAssignment4</string>
+    <string name="login">Login</string>
+    <string name="user">User</string>
+    <string name="TitleLogin">Login</string>
+    <string name="Clear">Clear</string>
+    <string name="AddNewPatient">Add New Patient</string>
+    <string name="user_id">User ID</string>
+    <string name="patName">Name</string>
+    <string name="lastname">LastName</string>
+    <string name="department">Department</string>
+    <string name="room">Room</string>
+    <string name="add">Add</string>
+    <string name="new_patient">New Patient</string>
+    <string name="AddTest">Add Test</string>
+    <string name="password">Password</string>
+    <string name="generatedata">GenerateData</string>
+    <string name="cenntennial_hospital">Cenntennial Hospital</string>
+    <string name="nurse">Nurse</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="edit_info">Edit Patient Info</string>
+    <string name="patient">Patient</string>
+    <string name="tests_avaliable">Tests Avaliable</string>
+    <string name="add_test">Add Test</string>
+    <string name="bph">BPH</string>
+    <string name="te">Temperature</string>
+    <string name="bpl">BPL</string>
+
+    <string-array name="actions">
+        <item>Dept-Nurses</item>
+        <item>Dept-Patients</item>
+        <item>My Patients</item>
+
+    </string-array>
+
+    <string-array name="PossibleTests">
+        <item>BPL</item>
+        <item>BPH</item>
+        <item>TEMPERATURE</item>
+    </string-array>
+</resources>

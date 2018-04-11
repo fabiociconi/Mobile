@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ciconi.assignmentrestaurant.Cuisines"
+    android:background="@drawable/back"  >
+
+    <RelativeLayout
+        android:id="@+id/RelatView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints,UselessParent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/choose_one_type_of_cuisines"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Holo"
+            android:textColor="@android:color/background_light"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:ignore="UnusedAttribute"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="87dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupRest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tittle">
+
+            <RadioButton
+                android:id="@+id/radioButtonItalian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="95dp"
+                android:buttonTint="@android:color/background_light"
+                android:checked="false"
+                android:text="@string/italian"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <RadioButton
+                android:id="@+id/radioButtonCanadian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="40dp"
+                android:buttonTint="@android:color/background_light"
+                android:checked="false"
+                android:text="@string/canadian"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFrench"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="40dp"
+                android:buttonTint="@android:color/background_light"
+                android:checked="false"
+                android:text="@string/french"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/radioButtonBrazilian"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:buttonTint="@android:color/background_light"
+                android:checked="false"
+                android:text="@string/brazilian"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:color/background_light" />
+
+        </RadioGroup>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonBack"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+
+                android:text="@string/back"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonNext"
+                style="@android:style/Widget.DeviceDefault.Light.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:onClick="onClick"
+                android:text="@string/next"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

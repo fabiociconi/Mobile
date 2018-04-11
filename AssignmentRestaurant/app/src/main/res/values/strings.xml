@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Assignment #2</string>
+    <string name="all_food">Simply Food</string>
+    <string name="enter">ENTER</string>
+
+    <string name="choose_one_type_of_cuisines">Choose one type of Cuisines:</string>
+    <string name="choose">Choose</string>
+    <string name="brazilian">BRAZILIAN</string>
+    <string name="canadian">CANADIAN</string>
+    <string name="french">FRENCH</string>
+    <string name="italian">ITALIAN</string>
+    <string name="restaurant_2">Restaurant 2</string>
+    <string name="restaurant_3">Restaurant 3</string>
+    <string name="restaurant_1">Restaurant 1</string>
+
+    <string-array name="restaurantsOptions">
+        <item>Mercury Restaurant</item>
+        <item>Venus Italian Restaurant</item>
+        <item>Earth Pasta</item>
+        <item>Mars Spaghetti</item>
+    </string-array>
+    <string name="title_activity_dishes">Dishes</string>
+    <string name="foodOpt1">food1</string>
+    <string name="foodOpt2">food2</string>
+    <string name="foodOpt3">food3</string>
+    <string name="foodOpt4">food4</string>
+    <string name="foodOpt5">food5</string>
+    <string name="foodOpt6">food6</string>
+    <string name="foodOpt7">food7</string>
+    <string name="foodOpt8">food8</string>
+    <string name="foodOpt9">food9</string>
+    <string name="foodOpt10">food10</string>
+
+    <string name="title_activity_summary">Summary</string>
+    <string name="title_activity_client_form">ClientForm</string>
+    <string name="chooseRest">Choose one Restaurant</string>
+    <string name="back">Back</string>
+    <string name="finish">Finish</string>
+    <string name="next">Next</string>
+    <string name="customerName">Name</string>
+    <string name="address">Address</string>
+    <string name="card_number">Card Number</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="finsh">Finsh</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="options">Options</string>
+</resources>
